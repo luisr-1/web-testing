@@ -8,7 +8,6 @@ require 'dotenv'
 Dotenv.load
 
 URL = ENV['URL']
-puts URL
 
 Capybara.register_driver :selenium do |driver|
   Capybara::Selenium::Driver.new(driver, :browser => :chrome)
@@ -27,4 +26,3 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
-
