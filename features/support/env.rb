@@ -1,16 +1,14 @@
 require 'site_prism'
-require 'cucumber'
 require 'capybara'
+require 'capybara/cucumber'
+require 'capybara/rspec'
 require 'selenium-webdriver'
 require 'dotenv'
-require 'rspec'
-require_relative 'page_initialization.rb'
 
-Dotenv.load('.env')
+Dotenv.load
 
 URL = ENV['URL']
-
-World(PageInitialization)
+puts URL
 
 Capybara.register_driver :selenium do |driver|
   Capybara::Selenium::Driver.new(driver, :browser => :chrome)
@@ -18,7 +16,7 @@ end
 
 Capybara.configure do |config|
   config.default_driver = :selenium
-  #config.app_host = URL
+  config.app_host = URL
   Capybara.page.driver.browser.manage.window.maximize
 end
 
@@ -29,3 +27,4 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
